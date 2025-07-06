@@ -5,25 +5,27 @@
   <title>Homepage</title>
 </head>
 <body>
-  <% if (locals.user) {%>
+  <% if (user) {%>
     <h1>WELCOME BACK <%= user.first_name %> <%= user.last_name %></h1>
     <a href="/messages/add"> Create a new message</a>
     <a href="/logout">LOG OUT</a>
+    <% if (user && !user.member) { %>
+    <p> Do you want to become a member to see the authors? </p>
+    <a href="/users/<%= user.id %>/membership"> Become a member today!</a>
+      <% } %>
   <% } else { %>
     <h1> Welcome to our club! </h1>
-    <a href="/register"> Register right now! </a>
-    <p> Already registred? <a href="/login"> Login </a> </p> 
-  <%}%>
-
-<% if (messages && messages.length > 0) { %>
-  <div class="messages-container">
-    <% messages.forEach((message) => { %>
-      <%- include('messages/message', { message: message, currentUser: currentUser }) %>
-    <% }); %>
-  </div>
-<% } else { %>
-  <div class="no-results">No messages found</div>
-<% } %>
+   <p><a href="/sign-up"> Sign up </a> right now! </p>
+    <p> Already registred? <a href="/login"> Login </a> </p>
+  <% } %>  <% if (messages && messages.length > 0) { %>
+    <div class="messages-container">
+      <% messages.forEach((message) => { %>
+        <%- include('messages/message', { message: message, user: user }) %>
+      <% }); %>
+    </div>
+  <% } else { %>
+    <div class="no-results">No messages found</div>
+  <% } %>
 
 </body>
 </html>
