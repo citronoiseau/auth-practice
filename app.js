@@ -4,7 +4,8 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require('connect-flash');
 const indexRouter = require("./routes/indexRouter");
-const messageRouter = require("./routes/indexRouter");
+const messageRouter = require("./routes/messageRouter");
+const userRouter = require("./routes/userRouter");
 const pool = require("./db/database");
 require("dotenv").config();
 
@@ -53,5 +54,12 @@ app.use((req, res, next) => {
 
 app.use("/", indexRouter);
 app.use("/messages", messageRouter);
-
+app.use("/users", userRouter);
+app.use((req, res) => {
+  res.status(404).render("error", { title: "Page not found" });
+});
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.statusCode || 500).send(err.message);
+});
 app.listen(3000, () => console.log("app listening on port 3000!"));
