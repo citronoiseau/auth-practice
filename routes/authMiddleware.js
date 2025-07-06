@@ -29,4 +29,4 @@ const isAdmin = (req, res, next) => {
   }
 };
 
-module.exports = { isAuth, isAdmin };
+module.exports = { isAuth, isAdmin, isMember };
