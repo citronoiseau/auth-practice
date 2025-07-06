@@ -1,18 +1,16 @@
-const router = require("express").Router();
+const { Router } = require("express");
 const passport = require("passport");
 const { signUp } = require("../controllers/formController");
-const { isAuth, isAdmin } = require("./authMiddleware");
+const { getAllMessages } = require("../controllers/messagesController");
+const indexRouter = Router();
 
+indexRouter.get("/", getAllMessages);
 
-router.get("/", (req, res, next) => {
-  res.render("index");
-});
-
-router.get("/login", (req, res, next) => {
+indexRouter.get("/login", (req, res, next) => {
   res.render("login_form");
 });
 
-router.post(
+indexRouter.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/",
@@ -21,20 +19,12 @@ router.post(
   })
 );
 
-router.post("/sign-up", signUp);
-router.get("/sign-up", (req, res, next) => {
+indexRouter.post("/sign-up", signUp);
+indexRouter.get("/sign-up", (req, res, next) => {
     res.render("sign_up_form");
 });
 
-router.get("/protected-route", isAuth, (req, res, next) => {
-  res.send("You made it to the route.");
-});
-
-router.get("/admin-route", isAdmin, (req, res, next) => {
-  res.send("You made it to the admin route.");
-});
-
-router.get("/logout", (req, res, next) => {
+indexRouter.get("/logout", (req, res, next) => {
   req.logout(function (err) {
     if (err) {
       return next(err);
@@ -43,4 +33,4 @@ router.get("/logout", (req, res, next) => {
   });
 });
 
-module.exports = router;
+module.exports = indexRouter;

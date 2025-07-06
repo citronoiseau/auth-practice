@@ -4,6 +4,7 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require('connect-flash');
 const indexRouter = require("./routes/indexRouter");
+const messageRouter = require("./routes/indexRouter");
 const pool = require("./db/database");
 require("dotenv").config();
 
@@ -51,5 +52,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/", indexRouter);
+app.use("/messages", messageRouter);
 
 app.listen(3000, () => console.log("app listening on port 3000!"));
