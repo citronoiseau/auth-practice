@@ -1,15 +1,15 @@
 const { Router } = require("express");
-const { isMember, isAdmin } = require("./authMiddleware");
+const { isAuth, isAdmin } = require("./authMiddleware");
+const { addMessage, deleteMessage } = require("../controllers/messagesController");
 
 const messageRouter = Router();
 
-messageRouter.get("/add", isMember, (req, res, next) => {
-  res.send("You can create messages!");
+messageRouter.get("/add", isAuth, (req, res, next) => {
+  res.render("message_form");
 });
+messageRouter.post("/add", isAuth, addMessage);
 
-messageRouter.get("/:id/delete", isAdmin, (req, res, next) => {
-  res.send("You can delete messages!");
-});
+messageRouter.post("/:id/delete", isAdmin, deleteMessage);
 
 
 module.exports = messageRouter;

@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>New message</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1> Create a new message </h1>
+    <%- include("partials/errors.ejs") %>
+   <form action="/messages/add" method="POST">
+    
+<div class="input-form"> 
+  <label for="title">Title: </label>
+  <input
+    type="text"
+    name="title"
+    id="title"
+    minlength="2"
+    maxlength="30"
+    required
+  >
+</div>
+
+<div class="input-form"> 
+  <label for="content"> Content: </label>
+<textarea
+  name="content"
+  id="content"
+  required
+  minlength="3"
+  maxlength="200"
+></textarea> 
+</div>
+    
+    <button type="submit">Post!</button>
+  </form>
+  <a href="/">Homepage</a>
+</html>

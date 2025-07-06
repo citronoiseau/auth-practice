@@ -3,7 +3,7 @@
     <h3 class="message-title"><%= message.title %></h3>
     <div class="message-content"><%= message.content %></div>
     
-    <% if (user.member && user.admin) { %>
+    <% if (user && user.member) { %>
       <div class="message-author">
         Created by <%= message.first_name %> <%= message.last_name %> (<%= message.username %>)
       </div>
@@ -12,7 +12,7 @@
       <div class="message-author">Anonymous</div>
     <% } %>
 
-        <% if (user.admin) { %>
+        <% if (user && user.admin) { %>
             <form
         action="/messages/<%= message.id %>/delete"
         method="POST"
