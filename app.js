@@ -2,8 +2,8 @@ const path = require("node:path");
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
-const routes = require("./routes");
-const pool = require("./config/database");
+const indexRouter = require("./routes/indexRouter");
+const pool = require("./db/database");
 require("dotenv").config();
 
 const app = express();
@@ -38,6 +38,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(routes);
+app.use("/", indexRouter);
 
 app.listen(3000, () => console.log("app listening on port 3000!"));
