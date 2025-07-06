@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const passport = require("passport");
-const { signUp } = require("../controllers/formController");
+const { signUp } = require("../controllers/usersController");
 const { getAllMessages } = require("../controllers/messagesController");
 const indexRouter = Router();
 
@@ -29,7 +29,7 @@ indexRouter.get("/logout", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/login");
+    res.redirect("/");
   });
 });
 
