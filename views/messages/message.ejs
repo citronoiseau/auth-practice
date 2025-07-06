@@ -1,0 +1,32 @@
+<div class="message-card">
+  <div class="message-info">
+    <h3 class="message-title"><%= message.title %></h3>
+    <div class="message-content"><%= message.content %></div>
+    
+    <% if (user.member && user.admin) { %>
+      <div class="message-author">
+        Created by <%= message.first_name %> <%= message.last_name %> (<%= message.username %>)
+      </div>
+      <div class="message-date"><%= message.timestamp.toLocaleString() %></div>
+    <% } else { %>
+      <div class="message-author">Anonymous</div>
+    <% } %>
+
+        <% if (user.admin) { %>
+            <form
+        action="/messages/<%= message.id %>/delete"
+        method="POST"
+        onsubmit="return confirm('Delete this message?')"
+      >
+        <button
+          class="icon-btn"
+          type="submit"
+          title="Delete"
+          aria-label="Delete"
+        >
+          🗑️
+        </button>
+      </form>
+    <% } %>
+  </div>
+</div>
