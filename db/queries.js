@@ -26,7 +26,24 @@ async function findUserById(id) {
   return result.rows[0]; 
 }
 
+async function getAllMessages() {
+  const { rows } = await pool.query(`
+    SELECT 
+      messages.id,
+      messages.user_id,
+      messages.title,
+      messages.content,
+      messages.timestamp,
+      users.first_name AS first_name,
+      users.last_name AS last_name,
+      users.username AS username
+    FROM messages
+    JOIN users ON messages.user_id = users.id
+    ORDER BY messages.timestamp
+  `);
+  return rows;
+}
 
 module.exports = {
-  addUser, findUserByUserName, findUserById
+  addUser, findUserByUserName, findUserById, getAllMessages
 };
