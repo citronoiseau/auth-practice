@@ -34,7 +34,7 @@
     name="password"
     id="password"
     required
-    minlength="6"
+    minlength="3"
     pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$"
     title="Password must be at least 3 characters and contain at least one letter and one number"
   >
@@ -66,9 +66,10 @@
 <p id="passwordError" style="color: red; display: none;">Passwords do not match.</p>
 
     
-    <button type="submit">Submit</button>
+    <button type="submit">Register</button>
   </form>
-  <a href="/">Back to home</a>
+  <p> Already registred? <a href="/login"> Login </a> </p> 
+  <a href="/">Homepage</a>
 </html>
 
 <script>

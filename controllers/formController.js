@@ -42,13 +42,11 @@ const signUp = [
   asyncHandler(async (req, res) => {
     console.log("Received form data:", req.body);
     const errors = validationResult(req);
-    if (!errors.isEmpty()) {
       if (!errors.isEmpty()) {
         return res.status(400).render("sign_up_form", {
           errors: errors.array(),
         });
       }
-    }
     const { first_name, last_name, username, password } = req.body;
     const isAdmin = req.body.isAdmin === 'admin';
     const hashedPassword = await bcrypt.hash(password, 10);
