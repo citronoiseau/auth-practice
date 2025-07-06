@@ -2,6 +2,7 @@ const path = require("node:path");
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
+const flash = require('connect-flash');
 const indexRouter = require("./routes/indexRouter");
 const pool = require("./db/database");
 require("dotenv").config();
@@ -28,13 +29,24 @@ app.use(
   })
 );
 
-require("./config/passport");
-
+require("./controllers/passport");
 app.use(passport.session());
+
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.errors = req.flash("error"); 
+  next();
+});
+
 
 app.use((req, res, next) => {
   console.log(req.session);
   console.log(req.user);
+  next();
+});
+
+app.use((req, res, next) => {
+  res.locals.user = req.user;
   next();
 });
 
