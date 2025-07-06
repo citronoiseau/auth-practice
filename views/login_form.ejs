@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Sign-up</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1> Login </h1>
+    <%- include("partials/errors.ejs") %>
+   <form action="/login" method="POST">
+    </div>
+    
+<div class="input-form"> 
+  <label for="username">Username: </label>
+  <input
+    type="text"
+    name="username"
+    id="username"
+    required
+    pattern="^[a-zA-Z0-9_]{3,20}$"
+    title="Username must be 3–20 characters long and contain only letters, numbers, and underscores"
+  >
+</div>
+
+<div class="input-form"> 
+  <label for="password">Password: </label>
+  <input
+    type="password"
+    name="password"
+    id="password"
+    required
+    minlength="3"
+  >
+  <button type="button" onclick="togglePassword('password', this)">Show</button>
+</div>
+    
+    <button type="submit">Login</button>
+  </form>
+  <a href="/">Homepage</a>
+</html>
+
+<script>
+  function togglePassword(fieldId, btn) {
+    const field = document.getElementById(fieldId);
+    if (field.type === "password") {
+      field.type = "text";
+      btn.textContent = "Hide";
+    } else {
+      field.type = "password";
+      btn.textContent = "Show";
+    }
+  }
+</script>
