@@ -1,12 +1,13 @@
 <html>
   <head>
+    <meta charset="UTF-8">
     <title>Sign-up</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <h1> Login </h1>
     <%- include("partials/errors.ejs") %>
-   <form action="/login" method="POST">
+   <form action="/login" method="POST" class="register-form">
     </div>
     
 <div class="input-form"> 
@@ -23,6 +24,7 @@
 
 <div class="input-form"> 
   <label for="password">Password: </label>
+  <div class="input-icon-container">
   <input
     type="password"
     name="password"
@@ -30,8 +32,9 @@
     required
     minlength="3"
   >
-  <button type="button" onclick="togglePassword('password', this)">Show</button>
-</div>
+  <span class="toggle-password" onclick="togglePassword('password', this)">🙉</span>
+  </div>
+  </div>
     
     <button type="submit">Login</button>
   </form>
@@ -39,14 +42,14 @@
 </html>
 
 <script>
-  function togglePassword(fieldId, btn) {
-    const field = document.getElementById(fieldId);
-    if (field.type === "password") {
-      field.type = "text";
-      btn.textContent = "Hide";
+  function togglePassword(fieldId, icon) {
+    const input = document.getElementById(fieldId);
+    if (input.type === "password") {
+      input.type = "text";
+      icon.textContent = "🙈"; 
     } else {
-      field.type = "password";
-      btn.textContent = "Show";
+      input.type = "password";
+      icon.textContent = "🙉"; 
     }
   }
 </script>
