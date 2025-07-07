@@ -16,6 +16,9 @@ body {
   color: #2f3640;
 }
 
+h1 {
+  padding-bottom: 20px;
+}
 .main {
   text-align: center;
   padding: 20px;
@@ -195,4 +198,8 @@ a:hover {
 
 p {
   text-align: center;
+}
+
+ul {
+  list-style-type: none;
 }

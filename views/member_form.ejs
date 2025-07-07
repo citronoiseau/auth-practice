@@ -14,29 +14,31 @@
     
 <div class="input-form"> 
   <label for="passworde">Secret password: </label>
+   <div class="input-icon-container">
   <input
     type="password"
     name="password"
     id="password"
     required
   >
-  <button type="button" onclick="togglePassword('password', this)">Show</button>
+  <span class="toggle-password" onclick="togglePassword('password', this)">🙉</span>
+  </div>
 </div>
 
-    <button type="submit">Apply!</button>
+    <button type="submit">Apply</button>
   </form>
   <a href="/">Homepage</a>
 </html>
 
 <script>
-  function togglePassword(fieldId, btn) {
-    const field = document.getElementById(fieldId);
-    if (field.type === "password") {
-      field.type = "text";
-      btn.textContent = "Hide";
+  function togglePassword(fieldId, icon) {
+    const input = document.getElementById(fieldId);
+    if (input.type === "password") {
+      input.type = "text";
+      icon.textContent = "🙈"; 
     } else {
-      field.type = "password";
-      btn.textContent = "Show";
+      input.type = "password";
+      icon.textContent = "🙉"; 
     }
   }
 </script>
