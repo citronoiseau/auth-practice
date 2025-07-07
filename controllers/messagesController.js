@@ -25,7 +25,6 @@ const getAllMessages = asyncHandler(async (req, res) => {
 const addMessage = [
   ...validateMessage,
   asyncHandler(async (req, res) => {
-    console.log("Received form data:", req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render("sign_up_form", {
