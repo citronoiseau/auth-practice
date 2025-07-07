@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS messages (
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: process.env.DB_STRING,
+    connectionString: process.env.DB_PROD,
   });
   try {
     await client.connect();
