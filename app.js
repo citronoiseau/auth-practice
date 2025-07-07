@@ -57,6 +57,11 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/messages", messageRouter);
 app.use("/users", userRouter);
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => console.log(`app listening on ${PORT}!`));
+
 app.use((req, res) => {
   res.status(404).render("error", { title: "Page not found" });
 });
@@ -64,4 +69,3 @@ app.use((err, req, res, next) => {
   console.error(err);
   res.status(err.statusCode || 500).send(err.message);
 });
-app.listen(3000, () => console.log("app listening on port 3000!"));
